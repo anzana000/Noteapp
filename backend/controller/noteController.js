@@ -1,68 +1,44 @@
 const Note = require("../models/noteModel");
 const APIFeatures = require("../utils/apiFeatures");
+const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/appError");
 
-exports.getNotes = async (req, res) => {
-  try {
-    const features = new APIFeatures(Tour.find(), req.query)
-      .filter()
-      .sort()
-      .limitFields()
-      .paginate();
-    const tours = await features.query;
+exports.getNotes = catchAsync(async (req, res, next) => {
+  const features = new APIFeatures(Note.find(), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate();
+  const tours = await features.query;
 
-    res.status(200).json({
-      status: "success",
-      results: notes.length,
-      data: { notes },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "failed",
-      error: err,
-    });
-  }
-};
+  res.status(200).json({
+    status: "success",
+    results: notes.length,
+    data: { notes },
+  });
+});
 
-exports.createNote = async (req, res) => {
-  try {
-    const newNote = await Note.create(req.body);
+exports.createNote = catchAsync(async (req, res, next) => {
+  const newNote = await Note.create(req.body);
 
-    res.status(201).json({ status: "success", data: { newNote } });
-  } catch (err) {
-    res.status(404).json({
-      status: "failed",
-      error: err,
-    });
-  }
-};
+  res.status(201).json({ status: "success", data: { newNote } });
+});
 
-exports.editNote = async (req, res) => {
-  try {
-    const note = await Note.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidator: true,
-    });
+exports.editNote = catchAsync(async (req, res, next) => {
+  const note = await Note.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidator: true,
+  });
 
-    res.status(200).json({ status: "success", data: note });
-  } catch (err) {
-    res.status(404).json({
-      status: "failed",
-      error: err,
-    });
-  }
-};
+  if (!note) return next(new AppError(`No tour found for this ID`, 404));
 
-exports.deleteNote = async (req, res) => {
-  try {
-    note = await Note.findByIdAndDelete(req.params.id || req.params.name);
+  res.status(200).json({ status: "success", data: note });
+});
 
-    res
-      .status(204)
-      .json({ status: "success", message: "Successfully Deleted" });
-  } catch (err) {
-    res.status(404).json({
-      status: "failed",
-      error: err,
-    });
-  }
-};
+exports.deleteNote = catchAsync(async (req, res, next) => {
+  note = await Note.findByIdAndDelete(req.params.id || req.params.name);
+
+  if (!note) return next(new AppError(`No tour found for this ID`, 404));
+
+  res.status(204).json({ status: "success", message: "Successfully Deleted" });
+});
