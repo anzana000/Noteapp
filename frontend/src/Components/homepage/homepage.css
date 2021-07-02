@@ -1,0 +1,33 @@
+.homepage {
+  display: grid;
+  place-items: center;
+}
+
+.homepage-title {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: auto;
+  padding: 7px 10px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.homepage-title h2 {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.homepage-title span .MuiSvgIcon-root {
+  margin-left: 2rem;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.homepage-title span .MuiSvgIcon-root:hover {
+  background-color: #74b9ff;
+}

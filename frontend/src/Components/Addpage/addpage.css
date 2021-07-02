@@ -1,0 +1,41 @@
+.addpage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+input {
+  width: 400px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 400px;
+  resize: none;
+  outline: none;
+  padding: 10px 15px;
+}
+
+button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  outline: none;
+  border: none;
+  width: 200px;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+button:hover {
+  background-color: #74b9ff;
+}
