@@ -8,3 +8,22 @@ This is a folder for backend code!
 
 4) To delete a note , make a "delete" request to "localhost:5000/api/v1/note/id" (where 'id' is provided by the database)
 
+
+For creating a note ,"name", "title", "description" should be provided and the time is automatically stored by the server in database.
+
+
+And after making a get request you'll get  the following result 
+
+
+
+  {
+  "status": "success",
+  "data": {
+    "createdAt": "2021-06-18T03:52:23.818Z",
+    "_id": "60cc188ee500db430010f095",
+    "name": "test",
+    "title": "testt",
+    "description": "testdesc",
+    "__v": 0
+  }
+}
