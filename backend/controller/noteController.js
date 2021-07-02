@@ -9,13 +9,21 @@ exports.getNotes = catchAsync(async (req, res, next) => {
     .sort()
     .limitFields()
     .paginate();
-  const tours = await features.query;
+  const notes = await features.query;
 
   res.status(200).json({
     status: "success",
     results: notes.length,
     data: { notes },
   });
+});
+
+exports.getNote = catchAsync(async (req, res, next) => {
+  const note = await Note.findById(req.params.id);
+
+  if (!note) return next(new AppError(`No tour found for this ID`, 404));
+
+  res.status(200).json({ status: "success", data: note });
 });
 
 exports.createNote = catchAsync(async (req, res, next) => {
