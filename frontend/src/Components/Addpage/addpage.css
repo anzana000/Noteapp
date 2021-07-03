@@ -1,4 +1,4 @@
-.addpage {
+form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,7 +25,7 @@ textarea {
 button {
   background-color: #3498db;
   color: #fff;
-  padding: 5px 10px;
+  padding: 8px 10px;
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1px;
