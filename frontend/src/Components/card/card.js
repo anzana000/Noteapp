@@ -7,7 +7,7 @@ const Card = () => {
 
   useEffect(() => {
     async function data() {
-      const res = await axios
+      await axios
         .get("/api/v1/note")
         .then((res) => setNotes(res.data.data.notes))
         .catch((err) => console.log(err));
@@ -16,11 +16,12 @@ const Card = () => {
   });
   return (
     <>
-      {console.log(notes)}
       {notes.map((note) => {
-        <div className="card">
-          <li>{note}</li>
-        </div>;
+        return (
+          <div className="card">
+            <li>{note.name}</li>
+          </div>
+        );
       })}
     </>
   );
