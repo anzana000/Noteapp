@@ -1,40 +1,57 @@
-import React from 'react';
+import React, { useState } from "react";
+import axios from "axios";
 import "./addpage.css";
 
 const Addpage = () => {
-   let noteTitle = document.getElementById("title").value;
-    let note = document.getElementById("note-body").value;
-    let form = document.getElementById("form");
+  const [title, setTitle] = useState({
+    name: "",
+    description: "",
+  });
 
-    form.addEventListener("submit", postNote);
-    const postNote = (e) => {
-        e.preventDefault();
-         fetch("localhost:5000/api/v1/note", {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json , text/plain, */*',
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({ name:noteTitle, title: noteTitle, description: note })
-    })
-        .then(res => res.json())
-        .then(data => console.log(data));
-    }
-     
-return (
-        <div className = "addpage">
-            <form id = "form">
-            <input type="text" placeholder="Title" id = "title" autoFocus />
-            <textarea cols="30" rows="10"  id = "note-body"placeholder = "Write notes here..."></textarea>
-            <button>Save</button>
-        </form>
-        
+  const handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setTitle({ ...title, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newNote = { ...title };
+
+    axios
+      .post("/api/v1/note", newNote)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
+    setTitle({
+      name: "kajef",
+      description: "alsuhdf",
+    });
+  };
+
+  return (
+    <div className="addpage">
+      <form id="form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Title"
+          id="title"
+          autoFocus
+          onChange={handleInput}
+          name="name"
+        />
+        <textarea
+          cols="30"
+          rows="10"
+          id="note-body"
+          placeholder="Write notes here..."
+          onChange={handleInput}
+          name="description"
+        ></textarea>
+        <button>Submit</button>
+      </form>
     </div>
-    
-    )
-
-    
-
-}
+  );
+};
 
 export default Addpage;

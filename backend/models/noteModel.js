@@ -6,11 +6,7 @@ const noteSchema = new mongoose.Schema({
     required: [true, "A note must have a name"],
     trim: true,
   },
-  title: {
-    type: String,
-    required: [true, "A note must have a title"],
-    trim: true,
-  },
+
   description: {
     type: String,
     required: [true, "A note must have a description"],
