@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./addpage.css";
 
 const Addpage = () => {
+  let history = useHistory();
+
   const [title, setTitle] = useState({
     name: "",
     description: "",
@@ -18,15 +21,16 @@ const Addpage = () => {
     e.preventDefault();
     const newNote = { ...title };
 
+    setTitle({
+      name: "",
+      description: "",
+    });
     axios
       .post("/api/v1/note", newNote)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
-    setTitle({
-      name: "kajef",
-      description: "alsuhdf",
-    });
+    history.push("/");
   };
 
   return (
