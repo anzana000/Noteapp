@@ -15,15 +15,16 @@ const Card = () => {
     data();
   });
   return (
-    <>
+    <div className="cards">
       {notes.map((note) => {
         return (
           <div className="card">
             <li>{note.name}</li>
+            <li>{note.description}</li>
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 
