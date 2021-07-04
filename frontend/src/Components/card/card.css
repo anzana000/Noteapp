@@ -1,3 +1,46 @@
-.card-wrapper {
-  margin: 0 auto;
+.cards {
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+}
+
+.card {
+  width: 270px;
+  height: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 15px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-title {
+  color: #3498db;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-body p {
+  font-size: small;
+  color: gray;
+}
+
+.socials .MuiSvgIcon-root {
+  font-size: 18px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.socials .MuiSvgIcon-root:hover {
+  color: #3498db;
 }

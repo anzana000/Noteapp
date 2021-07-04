@@ -1,31 +1,9 @@
-// import React from 'react';
-// import "./card.css";
-// import EditIcon from '@material-ui/icons/Edit';
-// import DeleteIcon from '@material-ui/icons/Delete';
 
-// const Card = () => {
-    
-//     return (
-//         <div className="card-wrapper">
-//             <div className = "card">
-//             <div className="card-title">Title</div>
-//             <div className="card-body">
-//                 <p>Last Modified date</p>
-//                 <div className="social-icons">
-//                     <EditIcon />
-//                     <DeleteIcon/>
-//                 </div>
-                    
-//             </div>
-//         </div>
-//         </div>
-//     )
-// }
-
-// export default Card;
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import "./card.css";
 
 const Card = () => {
@@ -44,12 +22,18 @@ const Card = () => {
     <div className="cards">
       {notes.map((note) => {
         return (
+         
           <div className="card">
-                <ul>
-                     <li>{note.name}</li>
-            <li>{note.description}</li>
-           </ul>
-          </div>
+            <div className="card-title">{note.name}</div>
+            <div className="card-body">
+              <p>{note.description}</p>
+              <span class="socials">
+                <EditIcon />
+                <DeleteIcon />
+              </span>
+            </div>
+            </div>
+           
         );
       })}
     </div>
