@@ -39,3 +39,15 @@ button {
 button:hover {
   background-color: #74b9ff;
 }
+
+@media screen and (max-width: 500px) {
+  input,
+  textarea {
+    width: 250px;
+  }
+  form {
+    width: 300px;
+    display: grid;
+    place-items: center;
+  }
+}

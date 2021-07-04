@@ -31,3 +31,7 @@
 .homepage-title span .MuiSvgIcon-root:hover {
   background-color: #74b9ff;
 }
+
+.homepage a {
+  text-decoration: none;
+}

@@ -1,5 +1,9 @@
+
+
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import "./card.css";
 
 const Card = () => {
@@ -14,14 +18,26 @@ const Card = () => {
     }
     data();
   });
+    
+
   return (
-    <div className="cards">
+    <div className="cards" >
       {notes.map((note) => {
-        return (
-          <div className="card">
-            <li>{note.name}</li>
-            <li>{note.description}</li>
-          </div>
+       
+        return (   
+         
+          <div className="card" key = {note._id}>
+            <div className="card-title">{note.name}</div>
+            <div className="card-body">
+              <p>{note.description}</p>
+            </div>
+             <span className="socials">
+              <span className = "date">  {`Last modified: ${note.createdAt.split("T")[0]}`}</span>
+                <EditIcon />
+                <DeleteIcon />
+              </span>
+            </div>
+           
         );
       })}
     </div>
