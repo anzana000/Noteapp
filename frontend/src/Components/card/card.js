@@ -18,20 +18,24 @@ const Card = () => {
     }
     data();
   });
+    
+
   return (
-    <div className="cards">
+    <div className="cards" >
       {notes.map((note) => {
-        return (
+       
+        return (   
          
-          <div className="card">
+          <div className="card" key = {note._id}>
             <div className="card-title">{note.name}</div>
             <div className="card-body">
               <p>{note.description}</p>
-              <span class="socials">
+            </div>
+             <span className="socials">
+              <span className = "date">  {`Last modified: ${note.createdAt.split("T")[0]}`}</span>
                 <EditIcon />
                 <DeleteIcon />
               </span>
-            </div>
             </div>
            
         );
