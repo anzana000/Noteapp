@@ -21,7 +21,10 @@ textarea {
   outline: none;
   padding: 10px 15px;
 }
-
+.buttons {
+  display: flex;
+  justify-content: center;
+}
 button {
   background-color: #3498db;
   color: #fff;
@@ -31,9 +34,9 @@ button {
   letter-spacing: 1px;
   outline: none;
   border: none;
-  width: 200px;
+  width: 180px;
   border-radius: 4px;
-  margin: 1rem 0;
+  margin: 1rem 5px;
 }
 
 button:hover {
@@ -49,5 +52,10 @@ button:hover {
     width: 300px;
     display: grid;
     place-items: center;
+    padding: 16px 10px;
+  }
+
+  button {
+    width: 120px;
   }
 }

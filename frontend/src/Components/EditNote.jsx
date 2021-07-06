@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Addpage/addpage.css";
 
 const EditNote = (props) => {
   let history = useHistory();
 
+  const location = useLocation();
+  const { id, name, description } = location.state;
+
   const [title, setTitle] = useState({
-    name: "props.name",
-    description: "props.description",
+    name: name,
+    description: description,
   });
 
   const handleInput = (e) => {
@@ -17,12 +20,12 @@ const EditNote = (props) => {
     setTitle({ ...title, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newNote = { ...title };
 
-    axios
-      .patch(`/api/v1/note/${props.id}`, newNote)
+    await axios
+      .patch(`/api/v1/note/${id}`, newNote)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
@@ -31,6 +34,7 @@ const EditNote = (props) => {
 
   return (
     <div className="addpage">
+      
       <form id="form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -48,10 +52,12 @@ const EditNote = (props) => {
           onChange={handleInput}
           name="description"
         ></textarea>
-        <button>Save</button>
+        <div className="buttons"><button>Submit</button>
+        <button>Cancel</button></div>
       </form>
     </div>
   );
 };
 
 export default EditNote;
+

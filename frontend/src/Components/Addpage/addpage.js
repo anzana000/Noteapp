@@ -53,7 +53,8 @@ const Addpage = () => {
           onChange={handleInput}
           name="description"
         ></textarea>
-        <button>Submit</button>
+        <div className="buttons"><button>Submit</button>
+        <button>Cancel</button></div>
       </form>
     </div>
   );

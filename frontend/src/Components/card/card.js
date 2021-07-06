@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditNote from "../EditNote";
+import { Link } from "react-router-dom";
 import "./card.css";
 
 const Card = () => {
@@ -11,7 +11,7 @@ const Card = () => {
   useEffect(() => {
     async function data() {
       await axios
-        .get("/api/v1/note?sort=-createdAt")
+        .get("/api/v1/note?sort=-name")
         .then((res) => setNotes(res.data.data.notes))
         .catch((err) => console.log(err));
     }
@@ -25,12 +25,6 @@ const Card = () => {
     del();
   };
 
-  const edit = (id) => {
-    async function ed() {
-      await (<EditNote id={id} />);
-    }
-    ed();
-  };
 
   return (
     <div className="cards">
@@ -45,9 +39,18 @@ const Card = () => {
               <span className="date">
                 {`Last modified: ${note.createdAt.split("T")[0]}`}
               </span>
-              <span onClick={() => edit(note._id)}>
-                <EditIcon id={note._id}/>
-              </span>
+              <Link
+                to={{
+                  pathname: "/editnote",
+                  state: {
+                    id: note._id,
+                    name: note.name,
+                    description: note.description,
+                  },
+                }}
+              >
+                <EditIcon />
+              </Link>
               <span onClick={() => deleteNote(note._id)}>
                 <DeleteIcon />
               </span>
