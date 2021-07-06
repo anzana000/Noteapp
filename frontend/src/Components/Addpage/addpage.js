@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./addpage.css";
 
-
 const Addpage = () => {
   let history = useHistory();
 
@@ -36,7 +35,7 @@ const Addpage = () => {
 
   return (
     <div className="addpage">
-      <form id="form" onSubmit={handleSubmit}>
+      <form id="form">
         <input
           type="text"
           placeholder="Title"
@@ -53,8 +52,10 @@ const Addpage = () => {
           onChange={handleInput}
           name="description"
         ></textarea>
-        <div className="buttons"><button>Submit</button>
-        <button>Cancel</button></div>
+        <div className="buttons">
+          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={() => history.push("/")}>Cancel</button>
+        </div>
       </form>
     </div>
   );
