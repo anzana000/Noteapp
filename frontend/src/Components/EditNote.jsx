@@ -32,8 +32,6 @@ const EditNote = (props) => {
     history.push("/");
   };
 
-  console.log(name, id, description);
-
   return (
     <div className="addpage">
       <form id="form" onSubmit={handleSubmit}>
