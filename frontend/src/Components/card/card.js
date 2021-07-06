@@ -1,9 +1,8 @@
-
-
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditNote from "../EditNote";
 import "./card.css";
 
 const Card = () => {
@@ -12,41 +11,48 @@ const Card = () => {
   useEffect(() => {
     async function data() {
       await axios
-        .get("/api/v1/note")
+        .get("/api/v1/note?sort=-createdAt")
         .then((res) => setNotes(res.data.data.notes))
         .catch((err) => console.log(err));
     }
     data();
   });
-    
-//  const editIcon = document.getElementById("edit");
-//   const deleteIcon = document.getElementById("delete").parentElement.parentElement.getAttribute("key");
-//   console.log(deleteIcon)
-  
-  // deleteIcon.addEventListener("click", e => {
-  //   const parentId = e.target.parentElement.parentElement.getElementByAttribute("key");
-  //   console.log(parentId);
-  // })
-  
+
+  const deleteNote = (id) => {
+    async function del() {
+      await axios.delete(`/api/v1/note/${id}`);
+    }
+    del();
+  };
+
+  const edit = (id) => {
+    async function ed() {
+      await (<EditNote id={id} />);
+    }
+    ed();
+  };
 
   return (
-    <div className="cards" >
+    <div className="cards">
       {notes.map((note) => {
-       
-        return (   
-         
-          <div className="card" key = {note._id}>
+        return (
+          <div className="card" key={note._id}>
             <div className="card-title">{note.name}</div>
             <div className="card-body">
-              <p>{note.description.length > 50 ? note.description.slice(0, 50) + "..." : note.description}</p>
+              <p>{note.description}</p>
             </div>
-             <span className="socials">
-              <span className = "date">  {`Last modified: ${note.createdAt.split("T")[0]}`}</span>
-                <EditIcon id = "edit"/>
-                <DeleteIcon id = "delete"/>
+            <span className="socials">
+              <span className="date">
+                {`Last modified: ${note.createdAt.split("T")[0]}`}
               </span>
-            </div>
-           
+              <span onClick={() => edit(note._id)}>
+                <EditIcon id={note._id}/>
+              </span>
+              <span onClick={() => deleteNote(note._id)}>
+                <DeleteIcon />
+              </span>
+            </span>
+          </div>
         );
       })}
     </div>
