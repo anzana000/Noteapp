@@ -19,6 +19,15 @@ const Card = () => {
     data();
   });
     
+//  const editIcon = document.getElementById("edit");
+//   const deleteIcon = document.getElementById("delete").parentElement.parentElement.getAttribute("key");
+//   console.log(deleteIcon)
+  
+  // deleteIcon.addEventListener("click", e => {
+  //   const parentId = e.target.parentElement.parentElement.getElementByAttribute("key");
+  //   console.log(parentId);
+  // })
+  
 
   return (
     <div className="cards" >
@@ -29,12 +38,12 @@ const Card = () => {
           <div className="card" key = {note._id}>
             <div className="card-title">{note.name}</div>
             <div className="card-body">
-              <p>{note.description}</p>
+              <p>{note.description.length > 50 ? note.description.slice(0, 50) + "..." : note.description}</p>
             </div>
              <span className="socials">
               <span className = "date">  {`Last modified: ${note.createdAt.split("T")[0]}`}</span>
-                <EditIcon />
-                <DeleteIcon />
+                <EditIcon id = "edit"/>
+                <DeleteIcon id = "delete"/>
               </span>
             </div>
            
