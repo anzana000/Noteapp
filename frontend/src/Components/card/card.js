@@ -35,7 +35,7 @@ const Card = () => {
     marginTop: "2rem",
   };
   return (
-    <>
+    <div>
       <div>
         <div style={styles}>
           <label htmlFor="">Sort</label>
@@ -64,6 +64,7 @@ const Card = () => {
 
       <div className="cards">
        
+      <div className="cards">
         {notes.map((note) => {
           return (
             <div className="card" key={note._id}>
@@ -95,7 +96,9 @@ const Card = () => {
           );
         })}
       </div>
-    </>
+      </div>
+    </div>
+      
   );
 };
 
