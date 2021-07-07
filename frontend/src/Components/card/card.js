@@ -11,17 +11,17 @@ const Card = () => {
 
   const [notes, setNotes] = useState([]);
 
-  const [sort, setSort] = useState("-createdAt");
+  const [sort, setSort] = useState("?sort=-createdAt");
 
   useEffect(() => {
     async function data() {
       await axios
-        .get(`/api/v1/note?sort=${sort}`)
+        .get(`/api/v1/note${sort}`)
         .then((res) => setNotes(res.data.data.notes))
         .catch((err) => console.log(err));
     }
     data();
-  });
+  }, [sort]);
 
   const deleteNote = (id) => {
     async function del() {
@@ -47,10 +47,10 @@ const Card = () => {
               setSort(e.target.value);
             }}
           >
-            <option value="-createdAt">By date asc</option>
-            <option value="createdAt">By date desc</option>
-            <option value="-name">By name asc</option>
-            <option value="name">By name desc</option>
+            <option value="?sort=-createdAt">By date asc</option>
+            <option value="?sort=createdAt">By date desc</option>
+            <option value="?sort=-name">By name asc</option>
+            <option value="?sort=name">By name desc</option>
           </select>
         </div>
       </div>
