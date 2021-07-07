@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router-dom";
 import "./card.css";
 
@@ -34,6 +34,10 @@ const Card = () => {
     marginLeft: "2rem",
     marginTop: "2rem",
   };
+  console.log(sort);
+  if (sort === "?name=") {
+    setSort("?sort=-createdAt");
+  }
   return (
     <div>
       <div>
@@ -57,48 +61,53 @@ const Card = () => {
       </div>
 
       <div className="search">
-      <input type="text" id = "searchicon" name = "searchicon" placeholder="Search notes" />
-          <label class="search-icon" for = "searchicon"><SearchIcon/></label>
+        <input
+          type="text"
+          id="searchicon"
+          name="searchicon"
+          placeholder="Search notes"
+          onChange={(e) => setSort(`?name=${e.target.value}`)}
+        />
+        <label class="search-icon" for="searchicon">
+          <SearchIcon />
+        </label>
       </div>
-      
 
       <div className="cards">
-       
-      <div className="cards">
-        {notes.map((note) => {
-          return (
-            <div className="card" key={note._id}>
-              <div className="card-title">{note.name}</div>
-              <div className="card-body">
-                <p>{note.description}</p>
+        <div className="cards">
+          {notes.map((note) => {
+            return (
+              <div className="card" key={note._id}>
+                <div className="card-title">{note.name}</div>
+                <div className="card-body">
+                  <p>{note.description}</p>
+                </div>
+                <span className="socials">
+                  <span className="date">
+                    {`Last modified: ${note.createdAt.split("T")[0]}`}
+                  </span>
+                  <Link
+                    to={{
+                      pathname: "/editnote",
+                      state: {
+                        id: note._id,
+                        name: note.name,
+                        description: note.description,
+                      },
+                    }}
+                  >
+                    <EditIcon />
+                  </Link>
+                  <span onClick={() => deleteNote(note._id)}>
+                    <DeleteIcon />
+                  </span>
+                </span>
               </div>
-              <span className="socials">
-                <span className="date">
-                  {`Last modified: ${note.createdAt.split("T")[0]}`}
-                </span>
-                <Link
-                  to={{
-                    pathname: "/editnote",
-                    state: {
-                      id: note._id,
-                      name: note.name,
-                      description: note.description,
-                    },
-                  }}
-                >
-                  <EditIcon />
-                </Link>
-                <span onClick={() => deleteNote(note._id)}>
-                  <DeleteIcon />
-                </span>
-              </span>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
       </div>
     </div>
-      
   );
 };
 

@@ -6,6 +6,7 @@ const noteSchema = new mongoose.Schema({
     required: [true, "A note must have a title"],
     trim: true,
     maxlength: [10, "A name must be within 10 characters!"],
+    lowercase: true,
   },
 
   description: {
