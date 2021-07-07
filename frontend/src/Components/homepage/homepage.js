@@ -24,8 +24,7 @@ const Homepage = () => {
   
       <Link to="/addnote">
         <div className="homepage-title">
-         
-          <span className = "add-icon">
+          <span className="add-icon">
             <AddIcon />
           </span>
         </div>

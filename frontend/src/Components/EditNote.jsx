@@ -10,8 +10,8 @@ const EditNote = (props) => {
   const { id, name, description } = location.state;
 
   const [title, setTitle] = useState({
-    name: name,
-    description: description,
+    name,
+    description,
   });
 
   const handleInput = (e) => {
@@ -34,8 +34,7 @@ const EditNote = (props) => {
 
   return (
     <div className="addpage">
-      
-      <form id="form" onSubmit={handleSubmit}>
+      <form id="form">
         <input
           type="text"
           placeholder="Title"
@@ -52,12 +51,13 @@ const EditNote = (props) => {
           onChange={handleInput}
           name="description"
         ></textarea>
-        <div className="buttons"><button>Submit</button>
-        <button>Cancel</button></div>
+        <div className="buttons">
+          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={() => history.push("/")}>Cancel</button>
+        </div>
       </form>
     </div>
   );
 };
 
 export default EditNote;
-
