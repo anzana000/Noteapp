@@ -1,7 +1,7 @@
 .homepage {
   display: grid;
   place-items: center;
-  position: relative;
+  /* position: relative; */
 }
 
 .sort {
@@ -23,8 +23,8 @@
 
 .search {
   position: absolute;
-  right: 6%;
-  top: 50%;
+  right: 7%;
+  top: 15%;
 }
 
 .search input {

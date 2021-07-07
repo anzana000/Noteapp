@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import SearchIcon from '@material-ui/icons/Search';
 import { Link } from "react-router-dom";
 import "./card.css";
 
@@ -35,7 +36,7 @@ const Card = () => {
   };
   return (
     <>
-      <div>
+      <div class = "extra">
         <div style={styles}>
           <label htmlFor="">Sort</label>
 
@@ -55,7 +56,14 @@ const Card = () => {
         </div>
       </div>
 
+      <div className="search">
+      <input type="text" id = "searchicon" name = "searchicon" placeholder="Search notes" />
+          <label class="search-icon" for = "searchicon"><SearchIcon/></label>
+      </div>
+      
+
       <div className="cards">
+       
         {notes.map((note) => {
           return (
             <div className="card" key={note._id}>
