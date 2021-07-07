@@ -1,6 +1,7 @@
 import React from "react";
 import "./homepage.css";
 import AddIcon from "@material-ui/icons/Add";
+import SearchIcon from '@material-ui/icons/Search';
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
@@ -14,7 +15,12 @@ const Homepage = () => {
   <option value="nameasc">By name asc</option>
   <option value="namedesc">By name desc</option>
 </select>
- </div>
+      </div>
+      <div className="search">
+      
+        <input type="text" id = "searchicon" name = "searchicon" placeholder="Search notes" />
+          <label class="search-icon" for = "searchicon"><SearchIcon/></label>
+      </div>
   
       <Link to="/addnote">
         <div className="homepage-title">
