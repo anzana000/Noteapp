@@ -6,7 +6,7 @@
 
 .sort {
   position: absolute;
-  left: 10%;
+  left: 6%;
   top: 50%;
 }
 
@@ -39,7 +39,7 @@
 .search-icon {
   position: absolute;
   top: 20%;
-  left: 80%;
+  right: 5%;
 }
 
 .search-icon .MuiSvgIcon-root {
@@ -118,24 +118,10 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
-  .search-icon {
-    position: absolute;
-    left: 90%;
-  }
-}
-
 @media screen and (max-width: 500px) {
   .sort {
     position: absolute;
     left: 6%;
     bottom: -53%;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .search-icon {
-    position: absolute;
-    left: 48%;
   }
 }

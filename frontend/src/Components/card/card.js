@@ -36,7 +36,6 @@ const Card = () => {
     marginLeft: "2rem",
     marginTop: "2rem",
   };
-
   if (sort === "?name=") {
     setSort("?sort=-createdAt");
   }

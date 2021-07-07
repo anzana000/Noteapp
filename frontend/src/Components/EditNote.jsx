@@ -40,6 +40,7 @@ const EditNote = (props) => {
           placeholder="Title"
           id="title"
           autoFocus
+          value={title.name}
           onChange={handleInput}
           name="name"
         />
@@ -48,6 +49,7 @@ const EditNote = (props) => {
           rows="10"
           id="note-body"
           placeholder="Write notes here..."
+          value={title.description}
           onChange={handleInput}
           name="description"
         ></textarea>
