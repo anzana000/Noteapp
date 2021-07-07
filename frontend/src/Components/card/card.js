@@ -9,8 +9,9 @@ import "./card.css";
 const Card = () => {
   // const location = useLocation();
   // const { sort } = location.state;
-
   const [notes, setNotes] = useState([]);
+
+  const [dele, setDele] = useState(false);
 
   const [sort, setSort] = useState("?sort=-createdAt");
 
@@ -22,19 +23,20 @@ const Card = () => {
         .catch((err) => console.log(err));
     }
     data();
-  }, [sort]);
+  }, [sort, dele]);
 
   const deleteNote = (id) => {
     async function del() {
       await axios.delete(`/api/v1/note/${id}`);
     }
     del();
+    setDele(!dele);
   };
   const styles = {
     marginLeft: "2rem",
     marginTop: "2rem",
   };
-  console.log(sort);
+
   if (sort === "?name=") {
     setSort("?sort=-createdAt");
   }
