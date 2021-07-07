@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
-  grid-gap: 10px;
+  grid-gap: 15px;
 }
 
 .card {
@@ -69,9 +69,14 @@
 @media screen and (max-width: 500px) {
   .cards {
     grid-template-columns: repeat(1, 1fr);
-    margin: 1rem;
+    margin: 2rem 1rem;
   }
   .card {
     width: 250px;
+  }
+  .search {
+    position: absolute;
+    left: 10%;
+    top: 27%;
   }
 }
