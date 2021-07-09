@@ -11,8 +11,6 @@ const Card = () => {
   // const { sort } = location.state;
   const [notes, setNotes] = useState([]);
 
-  const [dele, setDele] = useState(false);
-
   const [sort, setSort] = useState("?sort=-createdAt");
 
   useEffect(() => {
@@ -23,14 +21,20 @@ const Card = () => {
         .catch((err) => console.log(err));
     }
     data();
-  }, [sort, dele]);
+  }, [sort]);
 
   const deleteNote = (id) => {
     async function del() {
       await axios.delete(`/api/v1/note/${id}`);
     }
     del();
-    setDele(!dele);
+    async function ref() {
+      await axios
+        .get(`/api/v1/note${sort}`)
+        .then((res) => setNotes(res.data.data.notes))
+        .catch((err) => console.log(err));
+    }
+    ref();
   };
   const styles = {
     marginLeft: "2rem",
