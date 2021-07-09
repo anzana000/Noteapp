@@ -28,13 +28,13 @@ const Card = () => {
       await axios.delete(`/api/v1/note/${id}`);
     }
     del();
-    async function ref() {
+    async function refresh() {
       await axios
         .get(`/api/v1/note${sort}`)
         .then((res) => setNotes(res.data.data.notes))
         .catch((err) => console.log(err));
     }
-    ref();
+    refresh();
   };
   const styles = {
     marginLeft: "2rem",

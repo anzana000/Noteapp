@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Homepage = () => {
   return (
     <div className="homepage">
+      <h1 id="ash">Keep notes</h1>
       <Link to="/addnote">
         <div className="homepage-title">
           <span className="add-icon">
